@@ -12,7 +12,6 @@ function validationOnField() {
     const nameError = document.querySelector('.name-error');
     const phoneError = document.querySelector('.phone-error');
     const addressError = document.querySelector('.address-error');
-
     name.addEventListener('input', function () {
         try {
             let contactData = new AddressBookData();
@@ -22,7 +21,6 @@ function validationOnField() {
             nameError.textContent = e;
         }
     });
-
     phone.addEventListener('input', function () {
         try {
             let contactData = new AddressBookData();
@@ -32,7 +30,6 @@ function validationOnField() {
             phoneError.textContent = e;
         }
     });
-
     address.addEventListener('input', function () {
         try {
             let contactData = new AddressBookData();
@@ -44,16 +41,14 @@ function validationOnField() {
     });
 }
 
-//on click submit Save method call
 const save = (event) => {
     event.preventDefault();
     event.stopPropagation();
     let addressBook = createAddressBook();
-    addAndUpdateLocalStorage(addressBook); // save updated data into local storage 
+    addAndUpdateLocalStorage(addressBook);
     alert("Contact added of : " + addressBook._name);
     window.location.replace(site_properties.home);
 }
-
 const createAddressBook = () => {
     let addressBook = new AddressBookData();
     addressBook.name = getInputValueId("#name");
@@ -65,20 +60,15 @@ const createAddressBook = () => {
     addressBook.id = addressBookObject._id;
     return addressBook;
 }
-
 const getInputValueId = (id) => {
     return document.querySelector(id).value;
 }
-
-//Create a new person id
 const createNewPersonId = () => {
     let personId = localStorage.getItem('personId');
     personId = !personId ? 1 : (parseInt(personId) + 1).toString();
     localStorage.setItem('personId', personId);
     return personId;
 }
-
-//UC8 - data entry store in local storage
 const addAndUpdateLocalStorage = (data) => {
     let personList = JSON.parse(localStorage.getItem("AddressBookList"));
     if (personList) {
@@ -96,8 +86,6 @@ const addAndUpdateLocalStorage = (data) => {
     }
     localStorage.setItem('AddressBookList', JSON.stringify(personList));
 }
-
-//Uc7 - Data populated from local storage for updating data
 const editForm = () => {
     let jsonData = localStorage.getItem('edit-person');
     isUpdate = jsonData ? true : false;
@@ -106,7 +94,6 @@ const editForm = () => {
     addressBookObject = JSON.parse(jsonData);
     setForm();
 }
-
 const setForm = () => {
     setValue('#name', addressBookObject._name);
     setValue('#phone', addressBookObject._phone);
@@ -115,19 +102,13 @@ const setForm = () => {
     setValue('#state', addressBookObject._state);
     setValue('#zipcode', addressBookObject._zipcode);
 }
-
 const setValue = (id, value) => {
     let element = document.querySelector(id);
     element.value = value;
 }
-
-
-//UC9- Cancel event
 const cancel = () => {
     window.location.replace(site_properties.home);
 }
-
-//UC-9 Reset event
 const reset = () => {
     setValue('#name', '');
     setTextValue('.text-error', '');
@@ -141,7 +122,6 @@ const reset = () => {
     setTextValue('.phone-error', '');
     alert("Data reseted");
 }
-
 const setTextValue = (id, message) => {
     const textError = document.querySelector(id);
     textError.textContent = message;

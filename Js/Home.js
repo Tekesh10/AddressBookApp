@@ -5,13 +5,10 @@ window.addEventListener('DOMContentLoaded', () => {
     createInnerHTML();
     localStorage.removeItem("edit-person");
 })
-
-/** UC4 section 2  populate data from local storage in home page table */
 const getDataFromStorage = () => {
     return localStorage.getItem('AddressBookList') ?
         JSON.parse(localStorage.getItem('AddressBookList')) : [];
 }
-
 const createInnerHTML = () => {
     const headerHtml = `
     <tr>
@@ -42,8 +39,6 @@ const createInnerHTML = () => {
     }
     document.querySelector('#display').innerHTML = innerHtml;
 }
-
-//UC5-Remove data
 const remove = (data) => {
     let deletePerson = addressBookList.find(contactData => contactData._id == data.id);
     if (!deletePerson)
@@ -55,9 +50,6 @@ const remove = (data) => {
     createInnerHTML();
     alert("Person data deleted successfully..!");
 }
-
-
-// //UC6 -Update data
 const update = (data) => {
     let updatePerson = addressBookList.find(contactData => contactData._id == data.id);
     if (!updatePerson)

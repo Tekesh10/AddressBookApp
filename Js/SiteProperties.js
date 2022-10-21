@@ -1,4 +1,4 @@
 let site_properties = {
-    home: "../html/homePage.html",
-    addBook: "../html/addPerson.html"
+    home: "../html/AddressBookHomePage.html",
+    addBook: "../html/AddressBookForm.html"
 }

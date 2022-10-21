@@ -4,7 +4,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
     validAddress();
 });
 
-
 function validName() {
     const name = document.querySelector('#name');
     const textError = document.querySelector('.text-error');
@@ -16,7 +15,6 @@ function validName() {
             textError.textContent = "Name is incorrect";
         }
     });
-
 }
 
 function validPhoneNumber() {
@@ -45,12 +43,9 @@ function validAddress() {
     });
 }
 
-//save method
 const save = () => {
     alert("Save button");
 }
-
-//reset method
 const reset = () => {
     alert("Reset button");
 }
