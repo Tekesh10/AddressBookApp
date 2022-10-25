@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -23,6 +22,18 @@ public class AddressBookController {
     public ResponseEntity<ResponseDTO> getAddressBookData() {
         List<AddressBookData> addressBookDataList = iAddressBookService.getAddressBookData();
         ResponseDTO responseDTO = new ResponseDTO("Get All call was Successful", addressBookDataList);
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
+    @GetMapping(value = {"/sortByCity"})
+    public ResponseEntity<ResponseDTO> sortAddressBookDataByCity() {
+        List<AddressBookData> addressBookDataList = iAddressBookService.sortAddressBookDataByCity();
+        ResponseDTO responseDTO = new ResponseDTO("Sort by City call was Successful", addressBookDataList);
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
+    @GetMapping(value = {"/sortByState"})
+    public ResponseEntity<ResponseDTO> sortAddressBookDataByState() {
+        List<AddressBookData> addressBookDataList = iAddressBookService.sortAddressBookDataByState();
+        ResponseDTO responseDTO = new ResponseDTO("Sort by State call was Successful", addressBookDataList);
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
     @GetMapping(value = {"/get/{id}"})

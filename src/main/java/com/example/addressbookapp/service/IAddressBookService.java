@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface IAddressBookService {
     List<AddressBookData> getAddressBookData();
+    List<AddressBookData> sortAddressBookDataByCity();
+    List<AddressBookData> sortAddressBookDataByState();
     AddressBookData getAddressBookById(int id);
     AddressBookData createAddressBookData(AddressBookDTO addressBookDTO);
     AddressBookData updateAddressBookData(int id, AddressBookDTO addressBookDTO);

@@ -19,6 +19,14 @@ public class AddressBookService implements IAddressBookService{
         return addressBookRepository.findAll();
     }
     @Override
+    public List<AddressBookData> sortAddressBookDataByCity() {
+        return addressBookRepository.sortAddressBookDataByCity();
+    }
+    @Override
+    public List<AddressBookData> sortAddressBookDataByState() {
+        return addressBookRepository.sortAddressBookDataByState();
+    }
+    @Override
     public AddressBookData getAddressBookById(int id) {
         return addressBookRepository.findById(id).orElseThrow(() -> new AddressBookException("Address Book With Id."+id+" does not Exists"));
     }
