@@ -36,28 +36,25 @@ public class AddressBookController {
         ResponseDTO responseDTO = new ResponseDTO("Sort by State call was Successful", addressBookDataList);
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
-    @GetMapping(value = {"/get/{id}"})
-    public ResponseEntity<ResponseDTO> getAddressBookData(@PathVariable("id") int id) {
-        AddressBookData addressBookData = iAddressBookService.getAddressBookById(id);
-        ResponseDTO responseDTO = new ResponseDTO("Get by Id call was Successful", addressBookData);
+    @GetMapping(value = {"/get"})
+    public ResponseEntity<ResponseDTO> getAddressBookData(@RequestHeader String token) {
+        ResponseDTO responseDTO = new ResponseDTO("Get by Id call was Successful", iAddressBookService.getAddressBookById(token));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
     @PostMapping("/add")
     public ResponseEntity<ResponseDTO> addAddressBookData(@Valid @RequestBody AddressBookDTO addressBookDTO) {
-        AddressBookData addressBookData = iAddressBookService.createAddressBookData(addressBookDTO);
-        ResponseDTO responseDTO = new ResponseDTO("Address Book data added Successfully", addressBookData);
+        ResponseDTO responseDTO = new ResponseDTO("Address Book data added and email sent Successfully", iAddressBookService.createAddressBookData(addressBookDTO));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
-    @PutMapping("/update/{id}")
-    public ResponseEntity<ResponseDTO> updateAddressBookData(@PathVariable("id") int id, @RequestBody AddressBookDTO addressBookDTO) {
-        AddressBookData addressBookData = iAddressBookService.updateAddressBookData(id, addressBookDTO);
-        ResponseDTO responseDTO = new ResponseDTO("Address Book data updated Successfully", addressBookData);
+    @PutMapping("/update")
+    public ResponseEntity<ResponseDTO> updateAddressBookData(@RequestHeader String token, @RequestBody AddressBookDTO addressBookDTO) {
+        ResponseDTO responseDTO = new ResponseDTO("Address Book data updated Successfully", iAddressBookService.updateAddressBookData(token, addressBookDTO));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<ResponseDTO> deleteAddressBookData(@PathVariable("id") int id) {
-        iAddressBookService.deleteAddressBookData(id);
-        ResponseDTO responseDTO = new ResponseDTO("Address Book data deleted Successfully", "Deleted id No."+id);
+    @DeleteMapping("/delete")
+    public ResponseEntity<ResponseDTO> deleteAddressBookData(@RequestHeader String token) {
+        iAddressBookService.deleteAddressBookData(token);
+        ResponseDTO responseDTO = new ResponseDTO("Address Book data deleted Successfully", "Id Deleted");
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 }

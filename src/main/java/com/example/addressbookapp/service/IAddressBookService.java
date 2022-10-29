@@ -8,8 +8,8 @@ public interface IAddressBookService {
     List<AddressBookData> getAddressBookData();
     List<AddressBookData> sortAddressBookDataByCity();
     List<AddressBookData> sortAddressBookDataByState();
-    AddressBookData getAddressBookById(int id);
-    AddressBookData createAddressBookData(AddressBookDTO addressBookDTO);
-    AddressBookData updateAddressBookData(int id, AddressBookDTO addressBookDTO);
-    void deleteAddressBookData(int id);
+    AddressBookData getAddressBookById(String token);
+    String createAddressBookData(AddressBookDTO addressBookDTO);
+    AddressBookData updateAddressBookData(String token, AddressBookDTO addressBookDTO);
+    void deleteAddressBookData(String token);
 }

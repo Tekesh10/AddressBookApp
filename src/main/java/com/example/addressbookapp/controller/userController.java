@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 public class userController {
     @Autowired
     IUserService iUserService;
-
     @GetMapping("/login")
     public ResponseEntity<ResponseDTO> userLogin(@RequestParam String userName, @RequestParam String password) {
         UserData userData = iUserService.userLogin(userName, password);
